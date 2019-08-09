@@ -92,6 +92,9 @@ public class UsageExample {
 		// Here we will simply XOR the two byte arrays. However, a more complicated and robust hash
 		// algorithm could be used.
 		byte[] entropy = Base64.getUrlDecoder().decode(b64entropy);
+		if(entropy.length == 0) {
+			throw new Exception("Service returned no entropy");
+		}
 		randomBytes = new byte[entropySize];
 		rbg.nextBytes(randomBytes);
 		for (int i = 0; i < entropySize; i++) {
